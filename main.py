@@ -27,25 +27,31 @@ print("Device: ", device)
 
 trcnn = TrCNN(32, 32, 10, 1).to(device)
 
-EPOCHS = 100
+# trcnn.save_model("models")
 
-optimizer = Adam(trcnn.parameters(), lr=0.005)
-criterion = nn.MSELoss()
+trcnn.load_model("models")
 
-if __name__ == "__main__":
+print("model loaded")
 
-  for epoch in range(EPOCHS):
-    for batch in tqdm(loader, desc="Training"):
-      images, labels = batch
-      images, labels = images.to(device).type(torch.float32), labels.to(device).type(torch.float32)
+# EPOCHS = 100
 
-      pred = trcnn(images)
+# optimizer = Adam(trcnn.parameters(), lr=0.005)
+# criterion = nn.MSELoss()
 
-      loss = criterion(pred.squeeze(1), labels)
-      print(loss)
+# if __name__ == "__main__":
 
-      optimizer.zero_grad()
-      loss.backward()
-      optimizer.step()
+#   for epoch in range(EPOCHS):
+#     for batch in tqdm(loader, desc="Training"):
+#       images, labels = batch
+#       images, labels = images.to(device).type(torch.float32), labels.to(device).type(torch.float32)
 
-    print(f'Epoch {epoch + 1}/{EPOCHS} loss: {loss.item() :.3f}')
+#       pred = trcnn(images)
+
+#       loss = criterion(pred.squeeze(1), labels)
+#       print(loss)
+
+#       optimizer.zero_grad()
+#       loss.backward()
+#       optimizer.step()
+
+#     print(f'Epoch {epoch + 1}/{EPOCHS} loss: {loss.item() :.3f}')

@@ -1,3 +1,5 @@
+import torch
+import os
 import torch.nn as nn
 from model.cnn import CNN
 from model.vit import VisionTransformer
@@ -35,3 +37,16 @@ class TrCNN(nn.Module):
     x = self.vit(x)
     x = self.dnn(x)
     return x
+  
+  def save_model(self, path):
+    if not os.path.exists(path):
+      os.makedirs(path)
+
+    torch.save(self.cnn.state_dict(), path + "/cnn.pth")
+    torch.save(self.vit.state_dict(), path + "/vit.pth")
+    torch.save(self.dnn.state_dict(), path + "/dnn.pth")
+  
+  def load_model(self, path):
+    self.cnn.load_state_dict(torch.load(path + "/cnn.pth", weights_only=True))
+    self.vit.load_state_dict(torch.load(path + "/vit.pth", weights_only=True))
+    self.dnn.load_state_dict(torch.load(path + "/dnn.pth", weights_only=True))
