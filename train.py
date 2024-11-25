@@ -80,7 +80,7 @@ trcnn.load_model(MODEL_PATH)
 if __name__ == '__main__':
   torch.cuda.empty_cache()
   for epoch in range(EPOOCHS):
-    loss = train(trcnn, loader, device=device)
+    loss = train(trcnn, loader, device=device, epoch=epoch)
     print(f"Epoch: {epoch}, Loss: {loss}")
     if SAVE_EACH_BATCH:
       trcnn.save_model(MODEL_PATH)
