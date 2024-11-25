@@ -14,7 +14,7 @@ load_dotenv()
 
 MODEL_PATH = "models"
 LOSS_HISTORY_FOLDER = "loss_history"
-EPOOCHS = 10
+EPOOCHS = 100
 SAVE_EACH_BATCH = False
 SAVE_EACH_EPOCH = True
 CSV_PATH = os.getenv("KADID_CSV_PATH")
