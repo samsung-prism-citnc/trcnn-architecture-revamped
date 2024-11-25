@@ -46,7 +46,7 @@ def train(trcnn, loader, epoch, learning_rate=0.01, device='cpu'):
     pred = trcnn(images)
 
     loss = criterion(pred.squeeze(1), labels)
-    print("Batch Loss :" + loss)
+    print("Batch Loss :" + str(loss))
 
     loss_history.append(loss.item())
     with open(loss_history_path, 'wb') as f:
