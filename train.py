@@ -27,7 +27,7 @@ def train(trcnn, loader, epoch, learning_rate=0.01, device='cpu'):
   optimizer = Adam(trcnn.parameters(), lr=0.005)
   criterion = nn.MSELoss()
 
-  loss_history_path = LOSS_HISTORY_FOLDER + "/epoch-" + epoch + ".pkl"
+  loss_history_path = LOSS_HISTORY_FOLDER + "/epoch-" + str(epoch) + ".pkl"
 
   if not os.path.exists(LOSS_HISTORY_FOLDER):
     os.makedirs(LOSS_HISTORY_FOLDER)
